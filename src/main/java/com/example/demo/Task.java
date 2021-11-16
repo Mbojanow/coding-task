@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,15 +27,15 @@ public class Task {
                     e.printStackTrace();
                 }
                 return act;
-            }).sorted((o1, o2) -> {
+            }).sorted(Comparator.comparing(person ->{
                 int value = 0;
                 try {
-                    value = ((Integer) score.get(o1)).compareTo((Integer) score.get(o2));
+                    value = ((Integer) score.get(person)).compareTo((Integer) score.get(person));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
                 return value;
-            }).collect(Collectors.toList());
+            } ).reversed()).collect(Collectors.toList());
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
@@ -71,15 +72,15 @@ public class Task {
                     e.printStackTrace();
                 }
                 return grp;
-            }).sorted((o1, o2) -> {
+            }).sorted(Comparator.comparing(person ->{
                 int value = 0;
                 try {
-                    value = ((Integer) score.get(o1)).compareTo((Integer) score.get(o2));
+                    value = ((Integer) score.get(person)).compareTo((Integer) score.get(person));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
                 return value;
-            }).collect(Collectors.toList());
+            } ).reversed()).collect(Collectors.toList());
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
